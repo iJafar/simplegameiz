@@ -386,12 +386,12 @@ restartBtn.addEventListener('click', startGame);
 window.addEventListener('keydown', (e) => {
     if (!isPlaying) return;
     if (e.code === 'Space' || e.code === 'ArrowUp') player.jump();
-    if (e.key === 'z' || e.key === 'Z' || e.code === 'ArrowDown') player.crouch();
+    if (e.code === 'KeyZ' || e.code === 'ArrowDown') player.crouch();
 });
 
 window.addEventListener('keyup', (e) => {
     if (!isPlaying) return;
-    if (e.key === 'z' || e.key === 'Z' || e.code === 'ArrowDown') player.standUp();
+    if (e.code === 'KeyZ' || e.code === 'ArrowDown') player.standUp();
 });
 
 const duckBtn = document.getElementById('duck-btn');
