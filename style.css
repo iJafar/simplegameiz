@@ -176,3 +176,8 @@ button:hover {
     background: rgba(255, 0, 60, 0.5);
     transform: translateX(-50%) scale(0.9);
 }
+
+@keyframes fadeOutUp {
+    0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    100% { opacity: 0; transform: translate(-50%, -100%) scale(1.5); }
+}

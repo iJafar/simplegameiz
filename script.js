@@ -286,10 +286,11 @@ function update() {
     if (newLevel > level) {
         level = newLevel;
         levelElement.innerText = level;
+        celebrateLevelUp();
     }
 
-    if (frameCount % 600 === 0) {
-        gameSpeed += 0.5;
+    if (frameCount % 600 === 0 && gameSpeed < 15) {
+        gameSpeed += 0.3; // Slower speed increase
     }
 
     stars.forEach(star => star.update());
@@ -372,11 +373,44 @@ function initGame() {
 }
 
 function startGame() {
+    if (isPlaying) return; // Prevent multiple instances of the game loop
     initGame();
     isPlaying = true;
     startScreen.classList.remove('active');
     gameOverScreen.classList.remove('active');
     update();
+}
+
+function celebrateLevelUp() {
+    // Show "LEVEL UP!" text
+    const levelUpText = document.createElement('div');
+    levelUpText.innerText = 'LEVEL ' + level;
+    levelUpText.style.position = 'absolute';
+    levelUpText.style.top = '30%';
+    levelUpText.style.left = '50%';
+    levelUpText.style.transform = 'translate(-50%, -50%)';
+    levelUpText.style.color = '#ff00ff';
+    levelUpText.style.fontSize = '80px';
+    levelUpText.style.fontWeight = '900';
+    levelUpText.style.fontFamily = 'Outfit, sans-serif';
+    levelUpText.style.textShadow = '0 0 30px #ff00ff';
+    levelUpText.style.pointerEvents = 'none';
+    levelUpText.style.zIndex = '1000';
+    levelUpText.style.animation = 'fadeOutUp 2s forwards';
+    document.getElementById('ui-layer').appendChild(levelUpText);
+
+    setTimeout(() => {
+        if(levelUpText.parentNode) levelUpText.parentNode.removeChild(levelUpText);
+    }, 2000);
+
+    // Create confetti particles across the screen
+    const colors = ['#00f3ff', '#ff003c', '#ff00ff', '#00ffaa'];
+    for (let i = 0; i < 150; i++) {
+        const x = Math.random() * canvas.width;
+        const y = Math.random() * canvas.height;
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        particles.push(new Particle(x, y, color, 1.5));
+    }
 }
 
 window.addEventListener('resize', resizeCanvas);
