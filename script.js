@@ -13,7 +13,7 @@ const restartBtn = document.getElementById('restart-btn');
 // Game constants
 const GRAVITY = 0.6;
 const JUMP_FORCE = -12;
-const BASE_SPEED = 6;
+const BASE_SPEED = 4.5; // Start slower
 const FLOOR_HEIGHT = 100;
 
 // Game State
@@ -289,8 +289,8 @@ function update() {
         celebrateLevelUp();
     }
 
-    if (frameCount % 600 === 0 && gameSpeed < 15) {
-        gameSpeed += 0.3; // Slower speed increase
+    if (frameCount % 400 === 0 && gameSpeed < 15) {
+        gameSpeed += 0.25; // Increase more smoothly
     }
 
     stars.forEach(star => star.update());
@@ -396,12 +396,12 @@ function celebrateLevelUp() {
     levelUpText.style.textShadow = '0 0 30px #ff00ff';
     levelUpText.style.pointerEvents = 'none';
     levelUpText.style.zIndex = '1000';
-    levelUpText.style.animation = 'fadeOutUp 2s forwards';
+    levelUpText.style.animation = 'fadeOutUp 3.5s forwards';
     document.getElementById('ui-layer').appendChild(levelUpText);
 
     setTimeout(() => {
         if(levelUpText.parentNode) levelUpText.parentNode.removeChild(levelUpText);
-    }, 2000);
+    }, 3500);
 
     // Create confetti particles across the screen
     const colors = ['#00f3ff', '#ff003c', '#ff00ff', '#00ffaa'];

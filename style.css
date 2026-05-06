@@ -178,6 +178,8 @@ button:hover {
 }
 
 @keyframes fadeOutUp {
-    0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    0% { opacity: 0; transform: translate(-50%, -30%) scale(0.8); }
+    15% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    80% { opacity: 1; transform: translate(-50%, -60%) scale(1.2); }
     100% { opacity: 0; transform: translate(-50%, -100%) scale(1.5); }
 }
