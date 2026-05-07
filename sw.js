@@ -1,10 +1,11 @@
-const CACHE_NAME = 'neon-runner-v2';
+const CACHE_NAME = 'neon-runner-v3';
 const urlsToCache = [
   './',
   './index.html',
   './style.css',
   './script.js',
-  './icon.svg',
+  './icon-192.png',
+  './icon-512.png',
   './manifest.json'
 ];
 
