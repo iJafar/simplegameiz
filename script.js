@@ -278,7 +278,8 @@ function update() {
     scoreElement.innerText = Math.floor(score);
 
     let newLevel = 1;
-    if (score >= 2500) newLevel = 5;
+    if (score >= 5000) newLevel = 6;
+    else if (score >= 2500) newLevel = 5;
     else if (score >= 1000) newLevel = 4;
     else if (score >= 500) newLevel = 3;
     else if (score >= 100) newLevel = 2;
@@ -331,19 +332,21 @@ function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     stars.forEach(star => star.draw());
 
+    const floorColor = level >= 6 ? '#ff003c' : '#00f3ff';
+
     ctx.beginPath();
     ctx.moveTo(0, canvas.height - FLOOR_HEIGHT);
     ctx.lineTo(canvas.width, canvas.height - FLOOR_HEIGHT);
-    ctx.strokeStyle = '#00f3ff';
+    ctx.strokeStyle = floorColor;
     ctx.lineWidth = 2;
     ctx.shadowBlur = 15;
-    ctx.shadowColor = '#00f3ff';
+    ctx.shadowColor = floorColor;
     ctx.stroke();
     ctx.shadowBlur = 0;
 
     const gridOffset = (frameCount * gameSpeed) % 40;
     ctx.beginPath();
-    ctx.strokeStyle = 'rgba(0, 243, 255, 0.2)';
+    ctx.strokeStyle = level >= 6 ? 'rgba(255, 0, 60, 0.2)' : 'rgba(0, 243, 255, 0.2)';
     ctx.lineWidth = 1;
     for(let i = -gridOffset; i < canvas.width; i+= 40) {
         ctx.moveTo(i, canvas.height - FLOOR_HEIGHT);
@@ -467,3 +470,10 @@ window.addEventListener('load', () => {
     initStars();
     draw();
 });
+
+// PWA Service Worker Registration
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js');
+    });
+}
