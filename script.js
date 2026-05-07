@@ -13,7 +13,7 @@ const restartBtn = document.getElementById('restart-btn');
 // Game constants
 const GRAVITY = 0.6;
 const JUMP_FORCE = -12;
-const BASE_SPEED = 4.5; // Start slower
+const BASE_SPEED = 3.8; // Start even slower
 const FLOOR_HEIGHT = 100;
 
 // Game State
@@ -278,11 +278,11 @@ function update() {
     scoreElement.innerText = Math.floor(score);
 
     let newLevel = 1;
-    if (score >= 5000) newLevel = 6;
-    else if (score >= 2500) newLevel = 5;
-    else if (score >= 1000) newLevel = 4;
-    else if (score >= 500) newLevel = 3;
-    else if (score >= 100) newLevel = 2;
+    if (score >= 1500) newLevel = 6;
+    else if (score >= 800) newLevel = 5;
+    else if (score >= 400) newLevel = 4;
+    else if (score >= 200) newLevel = 3;
+    else if (score >= 50) newLevel = 2;
     
     if (newLevel > level) {
         level = newLevel;
@@ -290,8 +290,8 @@ function update() {
         celebrateLevelUp();
     }
 
-    if (frameCount % 400 === 0 && gameSpeed < 15) {
-        gameSpeed += 0.25; // Increase more smoothly
+    if (frameCount % 500 === 0 && gameSpeed < 12) {
+        gameSpeed += 0.2; // Increase even more smoothly
     }
 
     stars.forEach(star => star.update());
