@@ -1,10 +1,15 @@
 {
+  "id": "/neon-runner/",
   "name": "Neon Runner",
   "short_name": "NeonRunner",
+  "description": "A fast-paced visually striking neon endless runner game.",
   "start_url": "./index.html",
   "display": "standalone",
+  "orientation": "portrait",
   "background_color": "#050508",
   "theme_color": "#00f3ff",
+  "dir": "ltr",
+  "lang": "en-US",
   "icons": [
     {
       "src": "icon.svg",
